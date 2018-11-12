@@ -1,0 +1,27 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "funcs:build": "rm -rf dist/* && babel src/functions --out-dir dist/functions --ignore 'src/functions/node_modules'",
+    "funcs:copy": "cp package.json dist/functions && cp yarn.lock dist/functions",
+    "funcs:install": "cd dist/functions && yarn",
+    "funcs:serve": "yarn funcs:build && yarn funcs:copy && yarn funcs:install && firebase serve --only functions",
+    "funcs:serve-fast": "yarn funcs:build && firebase serve --only functions",
+    "funcs:deploy": "yarn funcs:build && yarn funcs:copy && yarn funcs:install && firebase deploy --only functions"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "firebase-admin": "^6.1.0",
+    "firebase-functions": "^2.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-stage-2": "^7.0.0",
+    "eslint": "^4.12.0",
+    "eslint-plugin-promise": "^3.6.0"
+  }
+}
